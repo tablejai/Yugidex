@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "335006259919",
+    "project_id": "yugidex-7169d",
+    "storage_bucket": "yugidex-7169d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335006259919:android:5917b4e5da98479c5a75ba",
+        "android_client_info": {
+          "package_name": "com.example.yugi_dex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCueRAoTDowJuUdgQ5n8T2IzwuqX_T4w8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
