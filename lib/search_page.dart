@@ -8,6 +8,19 @@ class SearchBarApp extends StatefulWidget {
   State<SearchBarApp> createState() => _SearchBarAppState();
 }
 
+Card cardBuilder(String randomText) {
+  return Card(
+      child: Row(children: <Widget>[
+    Text("asdf"),
+    const Expanded(
+        child: Column(children: <Widget>[
+      Text("Blue Eyes White Dragon"),
+      Text("Dragon / Normal")
+    ])),
+    TextButton(onPressed: () {}, child: Text("More Details $randomText")),
+  ]));
+}
+
 class _SearchBarAppState extends State<SearchBarApp> {
   bool isDark = false;
 
@@ -74,6 +87,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     final ThemeData themeData = ThemeData(
         useMaterial3: true,
@@ -95,8 +109,8 @@ class _SearchBarAppState extends State<SearchBarApp> {
           ),
           Flexible(
               child: ListView(
-            children: <Widget>[Text("Blue Eyes")],
             shrinkWrap: true,
+            children: <Widget>[cardBuilder("Yoyoyo"), cardBuilder("asf")],
           ))
         ],
       )),
