@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import "package:cached_network_image/cached_network_image.dart";
@@ -17,6 +16,20 @@ class SearchBarApp extends StatefulWidget {
 Card cardBuilder(String randomText) {
   return Card(
       child: Row(children: <Widget>[
+    Container(
+        height: 100,
+        width: 100,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: FirebaseImageProvider(
+                    FirebaseUrl(
+                        "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg"),
+                    options: CacheOptions(source: Source.server))
+                // image: NetworkImage(
+                //     "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg")
+                // image: FirebaseImageProvider(FirebaseUrl(
+                //     "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg"))
+                ))),
     const Expanded(
         child: Column(children: <Widget>[
       Text("Blue Eyes White Dragon"),
@@ -101,24 +114,25 @@ class _SearchBarAppState extends State<SearchBarApp> {
     return MaterialApp(
       theme: themeData,
       home: Scaffold(
+          resizeToAvoidBottomInset: true,
           body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SearchAnchor(
-                builder: (BuildContext context, controller) =>
-                    searchbarBuilder(context, controller),
-                suggestionsBuilder:
-                    (BuildContext context, SearchController controller) =>
-                        cardSearchSuggestionBuilder(context, controller)),
-          ),
-          Flexible(
-              child: ListView(
-            shrinkWrap: true,
-            children: <Widget>[cardBuilder("Yoyoyo"), cardBuilder("asf")],
-          ))
-        ],
-      )),
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SearchAnchor(
+                    builder: (BuildContext context, controller) =>
+                        searchbarBuilder(context, controller),
+                    suggestionsBuilder:
+                        (BuildContext context, SearchController controller) =>
+                            cardSearchSuggestionBuilder(context, controller)),
+              ),
+              Flexible(
+                  child: ListView(
+                shrinkWrap: true,
+                children: <Widget>[cardBuilder("Yoyoyo"), cardBuilder("asf")],
+              ))
+            ],
+          )),
     );
   }
 }
