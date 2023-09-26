@@ -1,5 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
+import "package:cached_network_image/cached_network_image.dart";
+import 'package:yugi_dex/firebase/firebase_utils.dart';
+import "package:firebase_cached_image/firebase_cached_image.dart";
+import "firebase/firebase_options.dart";
 
 class SearchBarApp extends StatefulWidget {
   const SearchBarApp({super.key});
@@ -11,7 +17,6 @@ class SearchBarApp extends StatefulWidget {
 Card cardBuilder(String randomText) {
   return Card(
       child: Row(children: <Widget>[
-    Text("asdf"),
     const Expanded(
         child: Column(children: <Widget>[
       Text("Blue Eyes White Dragon"),
