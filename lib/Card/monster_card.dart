@@ -26,13 +26,16 @@ enum MonsterType {
 
 class MonsterCard extends BaseCard {
   MonsterCard(Image image, String name, this.monsterCardType, this.attribute,
-      this.type, this.isEffectMonster)
+      this.type, this.isEffectMonster, this.atk, this.def, this.effectText)
       : super(image, name, CardType.monster);
 
   final MonsterCardType monsterCardType;
   final MonsterAttribute attribute;
   final MonsterType type;
   final Bool isEffectMonster;
+  final int atk;
+  final int def;
+  final String effectText;
 }
 
 class MainDeckMonsterCard extends MonsterCard {
@@ -44,8 +47,12 @@ class MainDeckMonsterCard extends MonsterCard {
       MonsterAttribute attribute,
       MonsterType type,
       Bool isEffectMonster,
+      int atk,
+      int def,
+      String effectText,
       this.level)
-      : super(image, name, monsterCardType, attribute, type, isEffectMonster);
+      : super(image, name, monsterCardType, attribute, type, isEffectMonster,
+            atk, def, effectText);
 }
 
 class PendulumMonsterCard extends MainDeckMonsterCard {
@@ -58,9 +65,12 @@ class PendulumMonsterCard extends MainDeckMonsterCard {
       MonsterType type,
       Bool isEffectMonster,
       int level,
+      int atk,
+      int def,
+      String effectText,
       this.pendulumScale)
       : super(image, name, monsterCardType, attribute, type, isEffectMonster,
-            level);
+            atk, def, effectText, level);
 }
 
 class ExtraDeckMonsterCard extends MonsterCard {
@@ -72,8 +82,21 @@ class ExtraDeckMonsterCard extends MonsterCard {
       MonsterAttribute attribute,
       MonsterType type,
       Bool isEffectMonster,
+      int atk,
+      int def,
+      String effectText,
       this.summonRequirement)
-      : super(image, name, monsterCardType, attribute, type, isEffectMonster);
+      : super(
+          image,
+          name,
+          monsterCardType,
+          attribute,
+          type,
+          isEffectMonster,
+          atk,
+          def,
+          effectText,
+        );
 }
 
 class XYZMonsterCard extends ExtraDeckMonsterCard {
@@ -85,9 +108,12 @@ class XYZMonsterCard extends ExtraDeckMonsterCard {
       MonsterType type,
       Bool isEffectMonster,
       String summonRequirement,
+      int atk,
+      int def,
+      String effectText,
       this.rank)
       : super(image, name, MonsterCardType.xyz, attribute, type,
-            isEffectMonster, summonRequirement);
+            isEffectMonster, atk, def, effectText, summonRequirement);
 }
 
 class LinkMonsterCard extends ExtraDeckMonsterCard {
@@ -99,7 +125,10 @@ class LinkMonsterCard extends ExtraDeckMonsterCard {
       MonsterType type,
       Bool isEffectMonster,
       String summonRequirement,
+      int atk,
+      int def,
+      String effectText,
       this.linkRating)
       : super(image, name, MonsterCardType.link, attribute, type,
-            isEffectMonster, summonRequirement);
+            isEffectMonster, atk, def, effectText, summonRequirement);
 }
