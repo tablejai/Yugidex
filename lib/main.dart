@@ -3,6 +3,7 @@ import 'search_page.dart';
 import "firebase/firebase_options.dart";
 import "package:firebase_core/firebase_core.dart";
 import "upload_file_page.dart";
+import "package:yugi_dex/card_view_page.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,13 +32,16 @@ class BottomNavigationBarWidget extends StatefulWidget {
 }
 
 class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
-  int _selectedIndex = 0;
+  int _selectedBottomIndex = 0;
+  int _selectedPageIndex = 0;
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    SearchBarApp(),
+  late final List<Widget> _widgetOptions = <Widget>[
+    SearchBarApp(
+      updatePage: _onItemTapped,
+    ),
     UploadFilePage(),
     Text(
       'Testing',
@@ -47,11 +51,12 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
       'Settings',
       style: optionStyle,
     ),
+    CardViewPage()
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedPageIndex = index;
     });
   }
 
@@ -59,7 +64,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(_selectedPageIndex),
       ),
       appBar: AppBar(
         title: const Text('Yugidex'),
@@ -87,7 +92,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
             backgroundColor: Colors.pink,
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedBottomIndex,
         selectedItemColor: Colors.black54,
         onTap: _onItemTapped,
       ),

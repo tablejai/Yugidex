@@ -70,6 +70,7 @@ flutter:
 
   assets:
     - images/SpongeBob.jpg
+    - images/LevelStar.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

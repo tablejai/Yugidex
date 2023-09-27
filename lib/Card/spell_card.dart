@@ -1,1 +1,1 @@
-enum SpellType { normal, quickPlay, continuous, reitual, equip, field }
+enum SpellType { normal, quickPlay, continuous, ritual, equip, field }

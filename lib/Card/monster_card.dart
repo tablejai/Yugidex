@@ -34,3 +34,9 @@ class MonsterCard extends BaseCard {
   final MonsterType type;
   final Bool isEffectMonster;
 }
+
+class MainDeckMonsterCard extends MonsterCard {
+  MainDeckMonsterCard(Image image, String name, MonsterCardType monsterCardType,
+      MonsterAttribute attribute, MonsterType type, Bool isEffectMonster)
+      : super(image, name, monsterCardType, attribute, type, isEffectMonster);
+}
