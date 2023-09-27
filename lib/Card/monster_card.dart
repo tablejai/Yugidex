@@ -36,7 +36,70 @@ class MonsterCard extends BaseCard {
 }
 
 class MainDeckMonsterCard extends MonsterCard {
-  MainDeckMonsterCard(Image image, String name, MonsterCardType monsterCardType,
-      MonsterAttribute attribute, MonsterType type, Bool isEffectMonster)
+  final int level;
+  MainDeckMonsterCard(
+      Image image,
+      String name,
+      MonsterCardType monsterCardType,
+      MonsterAttribute attribute,
+      MonsterType type,
+      Bool isEffectMonster,
+      this.level)
       : super(image, name, monsterCardType, attribute, type, isEffectMonster);
+}
+
+class PendulumMonsterCard extends MainDeckMonsterCard {
+  final int pendulumScale;
+  PendulumMonsterCard(
+      Image image,
+      String name,
+      MonsterCardType monsterCardType,
+      MonsterAttribute attribute,
+      MonsterType type,
+      Bool isEffectMonster,
+      int level,
+      this.pendulumScale)
+      : super(image, name, monsterCardType, attribute, type, isEffectMonster,
+            level);
+}
+
+class ExtraDeckMonsterCard extends MonsterCard {
+  final String summonRequirement;
+  ExtraDeckMonsterCard(
+      Image image,
+      String name,
+      MonsterCardType monsterCardType,
+      MonsterAttribute attribute,
+      MonsterType type,
+      Bool isEffectMonster,
+      this.summonRequirement)
+      : super(image, name, monsterCardType, attribute, type, isEffectMonster);
+}
+
+class XYZMonsterCard extends ExtraDeckMonsterCard {
+  final int rank;
+  XYZMonsterCard(
+      Image image,
+      String name,
+      MonsterAttribute attribute,
+      MonsterType type,
+      Bool isEffectMonster,
+      String summonRequirement,
+      this.rank)
+      : super(image, name, MonsterCardType.xyz, attribute, type,
+            isEffectMonster, summonRequirement);
+}
+
+class LinkMonsterCard extends ExtraDeckMonsterCard {
+  final int linkRating;
+  LinkMonsterCard(
+      Image image,
+      String name,
+      MonsterAttribute attribute,
+      MonsterType type,
+      Bool isEffectMonster,
+      String summonRequirement,
+      this.linkRating)
+      : super(image, name, MonsterCardType.link, attribute, type,
+            isEffectMonster, summonRequirement);
 }

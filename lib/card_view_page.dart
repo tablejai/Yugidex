@@ -50,7 +50,6 @@ class _CardViewPageState extends State<CardViewPage> {
                                         "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg")))))
                       ]),
                   Row(
-                      mainAxisSize: MainAxisSize(),
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[Text("Blue Eyes White Dragon")])
                 ])));
