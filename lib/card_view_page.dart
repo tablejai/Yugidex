@@ -1,15 +1,23 @@
 import "package:flutter/material.dart";
+import "package:firebase_cached_image/firebase_cached_image.dart";
 import "dart:developer";
-import "dart:io";
 
 class CardViewPage extends StatefulWidget {
-  const CardViewPage({super.key});
+  // final Card cardToDisplay;
+  late final Function updatePage;
+  CardViewPage({required this.updatePage, super.key});
 
   @override
   State<CardViewPage> createState() => _CardViewPageState();
 }
 
 class _CardViewPageState extends State<CardViewPage> {
+  void parseCardDetails() {}
+
+  void backToSearchPage() {
+    widget.updatePage(0);
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData =
@@ -17,12 +25,34 @@ class _CardViewPageState extends State<CardViewPage> {
     return MaterialApp(
         theme: themeData,
         home: Scaffold(
-            body: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    child: const Text("A Card"),
-                    onPressed: () {
-                      log("So you clicked a card");
-                    }))));
+            appBar: AppBar(
+                leading: BackButton(
+                  color: Colors.black,
+                  onPressed: backToSearchPage,
+                ),
+                centerTitle: true),
+            body: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  // The Card Image
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 5.0, color: Colors.orangeAccent),
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5.0),
+                                child: Image(
+                                    image: FirebaseImageProvider(FirebaseUrl(
+                                        "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg")))))
+                      ]),
+                  Row(
+                      mainAxisSize: MainAxisSize(),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[Text("Blue Eyes White Dragon")])
+                ])));
   }
 }

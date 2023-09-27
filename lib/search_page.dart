@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
-import "package:cached_network_image/cached_network_image.dart";
 import 'package:yugi_dex/firebase/firebase_utils.dart';
 import "package:firebase_cached_image/firebase_cached_image.dart";
 import "firebase/firebase_options.dart";

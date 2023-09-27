@@ -51,7 +51,9 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
       'Settings',
       style: optionStyle,
     ),
-    CardViewPage()
+    CardViewPage(
+      updatePage: _onItemTapped,
+    )
   ];
 
   void _onItemTapped(int index) {
