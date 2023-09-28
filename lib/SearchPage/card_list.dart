@@ -1,10 +1,74 @@
 import "package:flutter/material.dart";
 import "package:firebase_cached_image/firebase_cached_image.dart";
+import "package:yugi_dex/Card/base_card.dart";
+import "package:yugi_dex/Card/monster_card.dart";
+import "dart:developer";
+
+MainDeckMonsterCard blueEyes = MainDeckMonsterCard(
+    "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg",
+    "Blue Eyes White Dragon",
+    MonsterCardType.normal,
+    MonsterAttribute.dark,
+    MonsterType.dragon,
+    false,
+    3000,
+    2500,
+    "Very Strong",
+    7);
 
 class CardListItem extends StatelessWidget {
   CardListItem({required this.updatePage});
 
   late final Function updatePage;
+
+  static final cardSystemMapping = {
+    "Level": Image.asset("images/LevelStar.png").image,
+    "Rank": Image.asset("images/RankStar.png").image,
+    "Link": Image.asset("images/LinkCircuit.png").image
+  };
+
+  String cardTypeParser(BaseCard inputCard) {
+    log("Card type = $inputCard.runtimeType");
+    return "Dragon/ Normal";
+  }
+
+  Row cardSystemParser(BaseCard inputCard) {
+    return inputCard is MonsterCard
+        ? Row(children: <Widget>[
+            Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                    image:
+                        DecorationImage(image: cardSystemMapping["Level"]!))),
+            const Text("8")
+          ])
+        : const Row();
+  }
+
+  // Parses Card to the row object
+  Row cardParser(BaseCard inputCard) {
+    DecorationImage cardImage = DecorationImage(
+        image: FirebaseImageProvider(FirebaseUrl(inputCard.imageUrl),
+            options: const CacheOptions(source: Source.cacheServer)));
+    return Row(children: <Widget>[
+      // Leftmost part of the card's brief view (image)
+      Container(
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0), image: cardImage)),
+      // Middle part of the card's brief view
+      Expanded(
+          child: Column(children: <Widget>[
+        Text(inputCard.name),
+        Text(cardTypeParser(inputCard))
+      ])),
+      // TODO: Generate this last part only if the card is a monter card
+      // End part of the card's brief view (levels, rank, link)
+      cardSystemParser(inputCard)
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,33 +76,8 @@ class CardListItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
             side: const BorderSide(color: Colors.greenAccent),
             borderRadius: BorderRadius.circular(20.0)),
-        child: InkWell(
-            onTap: () => updatePage(4),
-            child: Row(children: <Widget>[
-              Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      image: DecorationImage(
-                          image: FirebaseImageProvider(
-                              FirebaseUrl(
-                                  "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg"),
-                              options: const CacheOptions(
-                                  source: Source.cacheServer))))),
-              const Expanded(
-                  child: Column(children: <Widget>[
-                Text("Blue Eyes White Dragon"),
-                Text("Dragon / Normal")
-              ])),
-              Container(
-                  width: 30,
-                  height: 30,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("images/LevelStar.png")))),
-              const Text("7")
-            ])));
+        child:
+            InkWell(onTap: () => updatePage(4), child: cardParser(blueEyes)));
   }
 }
 
