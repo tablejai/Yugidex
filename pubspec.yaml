@@ -45,6 +45,7 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_cache_manager: ^3.3.1
   firebase_cached_image: ^0.4.4
+  section_view: ^2.0.6
 
 dev_dependencies:
   flutter_test:

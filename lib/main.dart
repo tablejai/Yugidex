@@ -4,6 +4,7 @@ import "firebase/firebase_options.dart";
 import "package:firebase_core/firebase_core.dart";
 import "upload_file_page.dart";
 import "package:yugi_dex/card_view_page.dart";
+import "settings_page.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ class BottomNavigationBarWidget extends StatefulWidget {
   State<BottomNavigationBarWidget> createState() => _BottomNavigationBarState();
 }
 
+// TODO: Instead of using integer index to store and switch pages, use a map to direct to the page object
 class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
   int _selectedBottomIndex = 0;
   int _selectedPageIndex = 0;
@@ -47,10 +49,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
       'Testing',
       style: optionStyle,
     ),
-    Text(
-      'Settings',
-      style: optionStyle,
-    ),
+    SettingsPage(),
     CardViewPage(
       updatePage: _onItemTapped,
     )

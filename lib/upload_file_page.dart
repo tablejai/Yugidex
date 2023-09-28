@@ -18,7 +18,6 @@ class _UploadFilePageState extends State<UploadFilePage> {
     if (selectedFile == null) return;
 
     final selectedFilePath = selectedFile.files.single.path!;
-    log("Selected File Path = $selectedFilePath");
     final fileToUplaod = File(selectedFilePath);
 
     // Create the reference to Firebase

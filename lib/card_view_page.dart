@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "package:firebase_cached_image/firebase_cached_image.dart";
-import "dart:developer";
 
 class CardViewPage extends StatefulWidget {
   // final Card cardToDisplay;
