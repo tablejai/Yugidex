@@ -71,9 +71,16 @@ flutter:
 
   assets:
     - images/SpongeBob.jpg
-    - images/LevelStar.png
-    - images/RankStar.png
-    - images/LinkCircuit.png
+    - images/MonsterCard/Systems/LevelStar.png
+    - images/MonsterCard/Systems/RankStar.png
+    - images/MonsterCard/Systems/LinkCircuit.png
+    - images/MonsterCard/Attributes/Fire.png
+    - images/MonsterCard/Attributes/Water.png
+    - images/MonsterCard/Attributes/Earth.png
+    - images/MonsterCard/Attributes/Wind.png
+    - images/MonsterCard/Attributes/Light.png
+    - images/MonsterCard/Attributes/Dark.png
+    - images/MonsterCard/Attributes/Divine.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

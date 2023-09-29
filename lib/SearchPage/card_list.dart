@@ -38,8 +38,8 @@ class CardListItem extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: cardSystemLogoMapping[
-                            monsterCardSystemMapping(inputCard)]!))),
+                  image: getMonsterSystemLogo(inputCard).image,
+                ))),
             Text(inputCard.systemValue.toString())
           ])
         : const Row();

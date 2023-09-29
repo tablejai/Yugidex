@@ -9,5 +9,5 @@ MainDeckMonsterCard blueEyes = MainDeckMonsterCard(
     false,
     3000,
     2500,
-    "Very Strong",
-    7);
+    " This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.",
+    8);

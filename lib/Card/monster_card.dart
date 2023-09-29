@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'base_card.dart';
 
 // TODO: Think of a better name for this kinds of stuff (Kinda colliding with moster type)
@@ -12,6 +14,12 @@ enum MonsterCardType {
   link,
 }
 
+// TODO: Complete this map here
+Map monsterCardTypeEnumToString = {
+  MonsterCardType.normal: "Normal",
+  MonsterCardType.effect: "Effect"
+};
+
 enum MonsterAttribute { dark, divine, earth, fire, light, water, wind }
 
 enum MonsterType {
@@ -20,6 +28,11 @@ enum MonsterType {
   spellcaster,
   warrior
 }
+
+Map monsterTypeEnumToString = {
+  MonsterType.dragon: "Dragon",
+  MonsterType.spellcaster: "Spellcaster",
+};
 
 class MonsterCard extends BaseCard {
   MonsterCard(
@@ -31,9 +44,9 @@ class MonsterCard extends BaseCard {
       this.isEffectMonster,
       this.atk,
       this.def,
-      this.effectText,
+      String effectText,
       this.systemValue)
-      : super(imageUrl, name, CardType.monster);
+      : super(imageUrl, name, effectText, CardType.monster);
 
   final int systemValue;
   final MonsterCardType monsterCardType;
@@ -42,7 +55,6 @@ class MonsterCard extends BaseCard {
   final bool isEffectMonster;
   final int atk;
   final int def;
-  final String effectText;
 }
 
 class MainDeckMonsterCard extends MonsterCard {
@@ -147,4 +159,34 @@ class LinkMonsterCard extends ExtraDeckMonsterCard {
             effectText,
             systemValue,
             summonRequirement);
+}
+
+Image getMonsterSystemLogo(MonsterCard inputCard) {
+  if (inputCard is LinkMonsterCard) {
+    return Image.asset("images/MonsterCard/Systems/LevelStar.png");
+  } else if (inputCard is XYZMonsterCard) {
+    return Image.asset("images/MonsterCard/Systems/RankStar.png");
+  } else {
+    return Image.asset("images/MonsterCard/Systems/LevelStar.png");
+  }
+}
+
+Image getMonsterAttributeImage(MonsterCard inputCard) {
+  Map attributeToImg = {
+    MonsterAttribute.fire:
+        Image.asset("images/MonsterCard/Attributes/Fire.png"),
+    MonsterAttribute.water:
+        Image.asset("images/MonsterCard/Attributes/Water.png"),
+    MonsterAttribute.earth:
+        Image.asset("images/MonsterCard/Attributes/Earth.png"),
+    MonsterAttribute.wind:
+        Image.asset("images/MonsterCard/Attributes/Wind.png"),
+    MonsterAttribute.light:
+        Image.asset("images/MonsterCard/Attributes/Light.png"),
+    MonsterAttribute.dark:
+        Image.asset("images/MonsterCard/Attributes/Dark.png"),
+    MonsterAttribute.divine:
+        Image.asset("images/MonsterCard/Attributes/Divine.png")
+  };
+  return attributeToImg[inputCard.attribute];
 }
