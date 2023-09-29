@@ -1,13 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
-import 'package:yugi_dex/firebase/firebase_utils.dart';
-import "package:firebase_cached_image/firebase_cached_image.dart";
-import '../firebase/firebase_options.dart';
 import 'card_list.dart';
 
 class SearchBarApp extends StatefulWidget {
-  SearchBarApp({super.key});
+  const SearchBarApp({super.key});
 
   @override
   State<SearchBarApp> createState() => _SearchBarAppState();

@@ -3,7 +3,8 @@ import "package:yugi_dex/card_view_page.dart";
 
 Route createCardViewPageRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => CardViewPage(),
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const CardViewPage(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

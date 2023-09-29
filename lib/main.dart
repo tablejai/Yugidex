@@ -3,7 +3,6 @@ import 'SearchPage/search_page.dart';
 import "firebase/firebase_options.dart";
 import "package:firebase_core/firebase_core.dart";
 import "upload_file_page.dart";
-import "package:yugi_dex/card_view_page.dart";
 import "settings_page.dart";
 
 void main() async {
@@ -41,9 +40,9 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   late final List<Widget> _widgetOptions = <Widget>[
-    SearchBarApp(),
-    UploadFilePage(),
-    Text(
+    const SearchBarApp(),
+    const UploadFilePage(),
+    const Text(
       'Testing',
       style: optionStyle,
     ),

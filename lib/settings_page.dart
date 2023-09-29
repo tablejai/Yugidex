@@ -37,6 +37,9 @@ class _SettingsPageState extends State<SettingsPage> {
       SettingsItem(settingsName: "Card Language", callback: changeLanguage),
       SettingsItem(settingsName: "Search Language", callback: changeLanguage),
     ]),
+    SettingsSection(sectionName: "Display", settingItems: [
+      SettingsItem(settingsName: "Dark Mode", callback: changeLanguage),
+    ]),
     SettingsSection(sectionName: "Help", settingItems: [
       SettingsItem(settingsName: "Contact us", callback: contactUsPopUp),
       SettingsItem(settingsName: "FAQ", callback: faqPopUp),

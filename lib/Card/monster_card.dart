@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'base_card.dart';
-import "package:flutter/material.dart";
 
 // TODO: Think of a better name for this kinds of stuff (Kinda colliding with moster type)
 enum MonsterCardType {

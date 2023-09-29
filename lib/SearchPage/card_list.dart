@@ -18,9 +18,7 @@ MainDeckMonsterCard blueEyes = MainDeckMonsterCard(
     7);
 
 class CardListItem extends StatelessWidget {
-  CardListItem();
-
-  late final Function updatePage;
+  const CardListItem({super.key});
 
   static final cardSystemMapping = {
     "Level": Image.asset("images/LevelStar.png").image,
@@ -86,7 +84,7 @@ class CardListItem extends StatelessWidget {
 class CardList extends StatefulWidget {
   late List<CardListItem> itemList;
   CardList({super.key}) {
-    itemList = List.generate(20, (int index) => CardListItem());
+    itemList = List.generate(20, (int index) => const CardListItem());
   }
 
   @override

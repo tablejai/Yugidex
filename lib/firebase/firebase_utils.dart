@@ -1,7 +1,6 @@
 import "package:firebase_storage/firebase_storage.dart";
 import "dart:io";
 import "dart:developer";
-import "dart:typed_data";
 
 Reference getStorageRef() {
   return FirebaseStorage.instance.ref();
