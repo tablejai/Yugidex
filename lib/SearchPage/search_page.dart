@@ -18,7 +18,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
 
   List<ListTile> cardSearchSuggestionBuilder(
       BuildContext context, SearchController controller) {
-    // TODO: Make these suggested names generated from the database
+    // TODO: Make these suggested names generated from the local drive
     List<String> suggestedCardNames = [
       "Blue Eyes White Dragon",
       "Dark Magician"

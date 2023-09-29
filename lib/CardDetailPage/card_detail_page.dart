@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:yugi_dex/Card/base_card.dart";
 import "package:firebase_cached_image/firebase_cached_image.dart";
-import "package:yugi_dex/Card/monster_card.dart";
 import "package:yugi_dex/example_card.dart";
 
 class CardViewPage extends StatefulWidget {
