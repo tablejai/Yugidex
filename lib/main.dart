@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'search_page.dart';
+import 'SearchPage/search_page.dart';
 import "firebase/firebase_options.dart";
 import "package:firebase_core/firebase_core.dart";
 import "upload_file_page.dart";
@@ -41,22 +41,24 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   late final List<Widget> _widgetOptions = <Widget>[
-    SearchBarApp(
-      updatePage: _onItemTapped,
-    ),
+    SearchBarApp(),
     UploadFilePage(),
     Text(
       'Testing',
       style: optionStyle,
     ),
     SettingsPage(),
-    CardViewPage(
-      updatePage: _onItemTapped,
-    )
   ];
+
+  void changePage(int index) {
+    setState(() {
+      _selectedPageIndex = index;
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
+      _selectedBottomIndex = index;
       _selectedPageIndex = index;
     });
   }

@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:yugi_dex/firebase/firebase_utils.dart';
 import "package:firebase_cached_image/firebase_cached_image.dart";
-import "firebase/firebase_options.dart";
-import "SearchPage/card_list.dart";
+import '../firebase/firebase_options.dart';
+import 'card_list.dart';
 
 class SearchBarApp extends StatefulWidget {
-  late final Function updatePage;
-  SearchBarApp({required this.updatePage, super.key});
+  SearchBarApp({super.key});
 
   @override
   State<SearchBarApp> createState() => _SearchBarAppState();
@@ -100,7 +99,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
                         (BuildContext context, SearchController controller) =>
                             cardSearchSuggestionBuilder(context, controller)),
               ),
-              Flexible(child: CardList(updatePage: widget.updatePage))
+              Flexible(child: CardList())
             ],
           )),
     );

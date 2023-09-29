@@ -3,6 +3,7 @@ import "package:firebase_cached_image/firebase_cached_image.dart";
 import "package:yugi_dex/Card/base_card.dart";
 import "package:yugi_dex/Card/monster_card.dart";
 import "dart:developer";
+import "package:yugi_dex/SearchPage/page_route.dart";
 
 MainDeckMonsterCard blueEyes = MainDeckMonsterCard(
     "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg",
@@ -17,7 +18,7 @@ MainDeckMonsterCard blueEyes = MainDeckMonsterCard(
     7);
 
 class CardListItem extends StatelessWidget {
-  CardListItem({required this.updatePage});
+  CardListItem();
 
   late final Function updatePage;
 
@@ -76,16 +77,16 @@ class CardListItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
             side: const BorderSide(color: Colors.greenAccent),
             borderRadius: BorderRadius.circular(20.0)),
-        child:
-            InkWell(onTap: () => updatePage(4), child: cardParser(blueEyes)));
+        child: InkWell(
+            onTap: () => Navigator.of(context).push(createCardViewPageRoute()),
+            child: cardParser(blueEyes)));
   }
 }
 
 class CardList extends StatefulWidget {
   late List<CardListItem> itemList;
-  CardList({required Function updatePage, super.key}) {
-    itemList =
-        List.generate(20, (int index) => CardListItem(updatePage: updatePage));
+  CardList({super.key}) {
+    itemList = List.generate(20, (int index) => CardListItem());
   }
 
   @override

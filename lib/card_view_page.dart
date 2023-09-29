@@ -3,20 +3,13 @@ import "package:firebase_cached_image/firebase_cached_image.dart";
 
 class CardViewPage extends StatefulWidget {
   // final Card cardToDisplay;
-  late final Function updatePage;
-  CardViewPage({required this.updatePage, super.key});
+  const CardViewPage({super.key});
 
   @override
   State<CardViewPage> createState() => _CardViewPageState();
 }
 
 class _CardViewPageState extends State<CardViewPage> {
-  void parseCardDetails() {}
-
-  void backToSearchPage() {
-    widget.updatePage(0);
-  }
-
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData =
@@ -27,7 +20,7 @@ class _CardViewPageState extends State<CardViewPage> {
             appBar: AppBar(
                 leading: BackButton(
                   color: Colors.black,
-                  onPressed: backToSearchPage,
+                  onPressed: () => Navigator.pop(context),
                 ),
                 centerTitle: true),
             body: Column(
