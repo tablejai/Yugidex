@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:yugi_dex/Card/base_card.dart";
 import "package:firebase_cached_image/firebase_cached_image.dart";
+import "package:yugi_dex/Card/monster_card.dart";
+import "package:yugi_dex/example_card.dart";
 
 class CardViewPage extends StatefulWidget {
   // final Card cardToDisplay;
@@ -12,7 +14,25 @@ class CardViewPage extends StatefulWidget {
 
 class _CardViewPageState extends State<CardViewPage> {
   Column cardParser(BaseCard inputCard) {
-    return Column();
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          // The Card Image
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 5.0, color: Colors.orangeAccent),
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Image(
+                        image: FirebaseImageProvider(
+                            FirebaseUrl(inputCard.imageUrl)))))
+          ]),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[Text(inputCard.name)])
+        ]);
   }
 
   @override
@@ -28,27 +48,6 @@ class _CardViewPageState extends State<CardViewPage> {
                   onPressed: () => Navigator.pop(context),
                 ),
                 centerTitle: true),
-            body: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  // The Card Image
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 5.0, color: Colors.orangeAccent),
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5.0),
-                                child: Image(
-                                    image: FirebaseImageProvider(FirebaseUrl(
-                                        "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg")))))
-                      ]),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[Text("Blue Eyes White Dragon")])
-                ])));
+            body: cardParser(blueEyes)));
   }
 }

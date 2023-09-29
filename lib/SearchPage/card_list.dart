@@ -4,27 +4,26 @@ import "package:yugi_dex/Card/base_card.dart";
 import "package:yugi_dex/Card/monster_card.dart";
 import "dart:developer";
 import "package:yugi_dex/SearchPage/page_route.dart";
-
-MainDeckMonsterCard blueEyes = MainDeckMonsterCard(
-    "gs://yugidex-7169d.appspot.com/cards/yugioh/BlueEyesWhiteDragon.jpg",
-    "Blue Eyes White Dragon",
-    MonsterCardType.normal,
-    MonsterAttribute.dark,
-    MonsterType.dragon,
-    false,
-    3000,
-    2500,
-    "Very Strong",
-    7);
+import "package:yugi_dex/example_card.dart";
 
 class CardListItem extends StatelessWidget {
   const CardListItem({super.key});
 
-  static final cardSystemMapping = {
+  static final cardSystemLogoMapping = {
     "Level": Image.asset("images/LevelStar.png").image,
     "Rank": Image.asset("images/RankStar.png").image,
     "Link": Image.asset("images/LinkCircuit.png").image
   };
+
+  String monsterCardSystemMapping(BaseCard inputCard) {
+    if (inputCard is LinkMonsterCard) {
+      return "Link";
+    } else if (inputCard is XYZMonsterCard) {
+      return "Rank";
+    } else {
+      return "Level";
+    }
+  }
 
   String cardTypeParser(BaseCard inputCard) {
     log("Card type = $inputCard.runtimeType");
@@ -38,9 +37,10 @@ class CardListItem extends StatelessWidget {
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
-                    image:
-                        DecorationImage(image: cardSystemMapping["Level"]!))),
-            const Text("8")
+                    image: DecorationImage(
+                        image: cardSystemLogoMapping[
+                            monsterCardSystemMapping(inputCard)]!))),
+            Text(inputCard.systemValue.toString())
           ])
         : const Row();
   }

@@ -31,9 +31,11 @@ class MonsterCard extends BaseCard {
       this.isEffectMonster,
       this.atk,
       this.def,
-      this.effectText)
+      this.effectText,
+      this.systemValue)
       : super(imageUrl, name, CardType.monster);
 
+  final int systemValue;
   final MonsterCardType monsterCardType;
   final MonsterAttribute attribute;
   final MonsterType type;
@@ -44,7 +46,6 @@ class MonsterCard extends BaseCard {
 }
 
 class MainDeckMonsterCard extends MonsterCard {
-  final int level;
   MainDeckMonsterCard(
       String imageUrl,
       String name,
@@ -55,9 +56,9 @@ class MainDeckMonsterCard extends MonsterCard {
       int atk,
       int def,
       String effectText,
-      this.level)
+      int systemValue)
       : super(imageUrl, name, monsterCardType, attribute, type, isEffectMonster,
-            atk, def, effectText);
+            atk, def, effectText, systemValue);
 }
 
 class PendulumMonsterCard extends MainDeckMonsterCard {
@@ -69,13 +70,13 @@ class PendulumMonsterCard extends MainDeckMonsterCard {
       MonsterAttribute attribute,
       MonsterType type,
       bool isEffectMonster,
-      int level,
       int atk,
       int def,
       String effectText,
+      int systemValue,
       this.pendulumScale)
       : super(imageUrl, name, monsterCardType, attribute, type, isEffectMonster,
-            atk, def, effectText, level);
+            atk, def, effectText, systemValue);
 }
 
 class ExtraDeckMonsterCard extends MonsterCard {
@@ -90,22 +91,13 @@ class ExtraDeckMonsterCard extends MonsterCard {
       int atk,
       int def,
       String effectText,
+      int systemValue,
       this.summonRequirement)
-      : super(
-          imageUrl,
-          name,
-          monsterCardType,
-          attribute,
-          type,
-          isEffectMonster,
-          atk,
-          def,
-          effectText,
-        );
+      : super(imageUrl, name, monsterCardType, attribute, type, isEffectMonster,
+            atk, def, effectText, systemValue);
 }
 
 class XYZMonsterCard extends ExtraDeckMonsterCard {
-  final int rank;
   XYZMonsterCard(
       String imageUrl,
       String name,
@@ -116,24 +108,43 @@ class XYZMonsterCard extends ExtraDeckMonsterCard {
       int atk,
       int def,
       String effectText,
-      this.rank)
-      : super(imageUrl, name, MonsterCardType.xyz, attribute, type,
-            isEffectMonster, atk, def, effectText, summonRequirement);
+      int systemValue)
+      : super(
+            imageUrl,
+            name,
+            MonsterCardType.xyz,
+            attribute,
+            type,
+            isEffectMonster,
+            atk,
+            def,
+            effectText,
+            systemValue,
+            summonRequirement);
 }
 
 class LinkMonsterCard extends ExtraDeckMonsterCard {
-  final int linkRating;
   LinkMonsterCard(
-      String imageUrl,
-      String name,
-      MonsterAttribute attribute,
-      MonsterType type,
-      bool isEffectMonster,
-      String summonRequirement,
-      int atk,
-      int def,
-      String effectText,
-      this.linkRating)
-      : super(imageUrl, name, MonsterCardType.link, attribute, type,
-            isEffectMonster, atk, def, effectText, summonRequirement);
+    String imageUrl,
+    String name,
+    MonsterAttribute attribute,
+    MonsterType type,
+    bool isEffectMonster,
+    String summonRequirement,
+    int atk,
+    int def,
+    String effectText,
+    int systemValue,
+  ) : super(
+            imageUrl,
+            name,
+            MonsterCardType.link,
+            attribute,
+            type,
+            isEffectMonster,
+            atk,
+            def,
+            effectText,
+            systemValue,
+            summonRequirement);
 }
