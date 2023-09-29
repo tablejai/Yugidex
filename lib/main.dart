@@ -4,6 +4,8 @@ import "firebase/firebase_options.dart";
 import "package:firebase_core/firebase_core.dart";
 import "upload_file_page.dart";
 import "settings_page.dart";
+import "package:yugi_dex/DuelPage/duel_page.dart";
+import "package:yugi_dex/NewsPage/news_page.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,11 +43,9 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
 
   late final List<Widget> _widgetOptions = <Widget>[
     const SearchBarApp(),
+    const NewsPage(),
     const UploadFilePage(),
-    const Text(
-      'Testing',
-      style: optionStyle,
-    ),
+    const DuelPage(),
     SettingsPage(),
   ];
 
@@ -79,13 +79,18 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.newspaper),
+            label: 'News',
+            backgroundColor: Colors.yellow,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.style),
             label: 'Decks',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.science),
-            label: 'Testing',
+            label: 'Duel',
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
