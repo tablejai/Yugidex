@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:yugi_dex/card_view_page.dart";
+import "package:yugi_dex/CardDetailPage/card_detail_page.dart";
 
 Route createCardViewPageRoute() {
   return PageRouteBuilder(

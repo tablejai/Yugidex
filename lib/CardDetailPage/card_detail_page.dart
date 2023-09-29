@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:yugi_dex/Card/base_card.dart";
 import "package:firebase_cached_image/firebase_cached_image.dart";
 
 class CardViewPage extends StatefulWidget {
@@ -10,6 +11,10 @@ class CardViewPage extends StatefulWidget {
 }
 
 class _CardViewPageState extends State<CardViewPage> {
+  Column cardParser(BaseCard inputCard) {
+    return Column();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData =
