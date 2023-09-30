@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 import json
 import os
 
-DELAY_TIME = 10
+DELAY_TIME = 2
 DELAY_TIME_MS = DELAY_TIME * 1000
 BASE_DATA_DIRECTORY = "data"
 YUGIOH_DIRECTORY = "yugioh"
@@ -18,6 +18,8 @@ YUGIOH_DIRECTORY = "yugioh"
 driver = webdriver.Firefox()
 
 def writeDataToFile(path: str, data: str, fileName: str):
+    if not os.path.exists(path):
+            os.makedirs(path)
     file = open(os.path.join(path, fileName), 'w')
     file.write(data)
     file.close()
@@ -53,23 +55,49 @@ def getCardListByAlphabet(driver, url):
             os.makedirs(pathTarget)
         writeDataToFile(pathTarget, json.dumps(cardDataList, sort_keys=True, indent=2),"%s.txt" % ( index if index != '"' else "special_char"))
 
-alphabeticalList = "abcdefghijklmnopqrstuvwxyz¡"
-base_url = "https://yugioh.fandom.com/wiki/Category:OCG_cards"
+def getCardData(driver, url):
+    driver.get(url)
 
-# for chr in alphabeticalList:
-#     getCardListByAlphabet(driver, f"https://yugioh.fandom.com/wiki/Category:OCG_cards?from={chr}")
-#     sleep(10)
-current_url = base_url
-while True:
-    getCardListByAlphabet(driver, current_url)
+baseCardUrl = "https://yugioh.fandom.com/wiki/Zoroa,_the_Magistus_of_Flame"
+rushBaseCardUrl = "https://yugioh.fandom.com/wiki/Super_Magical_Shining_Beast_Magnum_Overlord_(L)"
+
+def getCardData(driver, url:str):
+    driver.get(url)
+    wait = WebDriverWait(driver, DELAY_TIME)
+    cardElements = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "cardtable" )))
+    cardData = {}
+    pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
+    for row in cardElements.find_elements(By.CLASS_NAME, "cardtablerow"):
+        #check if its a simple row or table data
+        #tableData = row.find_element(By.CLASS_NAME, "cardtablespanrow")
+        result = getRowData(row)
+        if(len(result) > 1):
+            cardData[result[0].lower()] = result[1]
+    writeDataToFile(pathTarget, json.dumps(cardData, indent=2), f'{cardData["english"]}.txt')
+
+
+def getRowData(element):
     try:
-        button = driver.find_element(By.CLASS_NAME, "category-page__pagination-next")
-        current_url = button.get_attribute("href")
-    except Exception as e:
-        print("it break")
-        print(e)
-        break
+        header = element.find_element(By.CLASS_NAME, "cardtablerowheader").text
+        data = element.find_element(By.CLASS_NAME, "cardtablerowdata").text
+        return [header, data]
+    except Exception:
+        print("not row based - wiki")
+        return []
+    
+getCardData(driver, baseCardUrl)
 
-
-
-
+if __name__ == "__main__":
+    print("yey")
+    # alphabeticalList = "abcdefghijklmnopqrstuvwxyz¡"
+    # base_url = "https://yugioh.fandom.com/wiki/Category:OCG_cards"
+    # current_url = base_url
+    # while True:
+    #     getCardListByAlphabet(driver, current_url)
+    #     try:
+    #         button = driver.find_element(By.CLASS_NAME, "category-page__pagination-next")
+    #         current_url = button.get_attribute("href")
+    #     except Exception as e:
+    #         print("it break")
+    #         print(e)
+    #         break
