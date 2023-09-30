@@ -45,3 +45,7 @@ app.*.map.json
 
 # firebase_options.dart
 lib/firebase_options.dart
+
+# data scrapped
+scrapped/data
+data/*
