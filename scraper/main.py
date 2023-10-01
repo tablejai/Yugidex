@@ -6,16 +6,19 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+import re
 import json
 import os
 
-DELAY_TIME = 2
+DELAY_TIME = 10
 DELAY_TIME_MS = DELAY_TIME * 1000
 BASE_DATA_DIRECTORY = "data"
 YUGIOH_DIRECTORY = "yugioh"
 
 
-driver = webdriver.Firefox()
+# driver = webdriver.Firefox()
+driver = webdriver.Edge("./driver/msedgedriver.exe")
 
 def writeDataToFile(path: str, data: str, fileName: str):
     if not os.path.exists(path):
@@ -73,7 +76,13 @@ def getCardData(driver, url:str):
         result = getRowData(row)
         if(len(result) > 1):
             cardData[result[0].lower()] = result[1]
-    writeDataToFile(pathTarget, json.dumps(cardData, indent=2), f'{cardData["english"]}.txt')
+        # else:
+        #     result = getTableData(row)
+        #     if(result != None and len(result) > 1):
+        #         cardData[result[0].lower()] = result[1]
+
+    return cardData
+    #writeDataToFile(pathTarget, json.dumps(cardData, indent=2), f'{cardData["english"]}.txt')
 
 
 def getRowData(element):
@@ -85,7 +94,71 @@ def getRowData(element):
         print("not row based - wiki")
         return []
     
-getCardData(driver, baseCardUrl)
+def getTableData(element):
+    try:
+        tableRows = element.find_elements(By.CLASS_NAME, "cardtablespanrow")
+        data = [element.find_element(By.TAG_NAME, "b").text]
+        for section in tableRows:
+            rows = section.find_elements(By.CLASS_NAME, "navbox")
+            for i in range(len(rows)):
+                data.append(getCardDescription(rows[i], i))
+        return data
+    except Exception as e:  
+        print(e)
+        return [] #its possible to create a record, maybe future update
+
+def getCardDescription(element, index):
+    #assumption hitting the row
+    #TODO xpath this garbage //*[@id="collapsibleTable0"]/tbody/tr[1]/th/div
+    try:
+        #clicking the button to reveal the text
+        
+        titleBorder = element.find_element(By.CLASS_NAME, "navbox-title")
+        clickReveal = titleBorder.find_element(By.XPATH, f'//*[@id="collapseButton{index}"]')
+        if(clickReveal.text.lower() == "show"):
+            ActionChains(driver).scroll_to_element(clickReveal).perform()
+            clickReveal.click() 
+        title = titleBorder.find_element(By.TAG_NAME, "div").text
+        description = element.find_element(By.CLASS_NAME, "navbox-list")
+        return [title, description.text]
+    except Exception as e:
+        print(e)
+        return []
+
+
+cache = { "curr_url" : "" , "finished" : ""}
+pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
+writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
+files = os.listdir(pathTarget)
+
+try:
+    for file in files:
+        if( file.split(".")[0] in cache["finished"]):
+            print(f'skipping {file}')
+            continue
+        loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
+        start = False if cache["curr_url"] != "" else True
+        for cardName, cardUrl in loadedCardByAlphabetical.items():
+            if cache["curr_url"] == cardUrl:
+                print("found the start url")
+                start = True
+            if start == False:
+                continue
+            cache["curr_url"] = cardUrl
+            data = getCardData(driver, cardUrl)
+            writeDataToFile(writeTarget, json.dumps(data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{data["english"]}.txt'))
+            sleep(1)
+            print(cache)
+        cache["finished"] = cache["finished"] + file.split(".")[0]
+        cache["curr_url"] = ""
+except Exception as e:
+    print(e)
+    writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
+                    json.dumps(cache),
+                    "cache.txt"
+                    )
+
+#getCardData(driver, baseCardUrl)
 
 if __name__ == "__main__":
     print("yey")

@@ -47,5 +47,8 @@ app.*.map.json
 lib/firebase_options.dart
 
 # data scrapped
-scrapped/data
+scraper/data
+scraper/driver/*.exe
 data/*
+
+
