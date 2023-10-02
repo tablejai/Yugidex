@@ -1,0 +1,824 @@
+{
+  "url": "https://yugipedia.com/wiki/The_Lost_Millennium",
+  "japanese": [
+    {
+      "cardCode": "TLM-JP001",
+      "english": "\"Elemental HERO Avian\"",
+      "japanese": "\u300c\uff25\u30fb\uff28\uff25\uff32\uff2f\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30d2\u30fc\u30ed\u30fc\n\u30d5\u30a7\u30b6\u30fc\u30de\u30f3\u300d",
+      "print": "Reprint",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_HERO_Avian"
+    },
+    {
+      "cardCode": "TLM-JP002",
+      "english": "\"Elemental HERO Burstinatrix\"",
+      "japanese": "\u300c\uff25\u30fb\uff28\uff25\uff32\uff2f\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30d2\u30fc\u30ed\u30fc\n\u30d0\u30fc\u30b9\u30c8\u30ec\u30c7\u30a3\u300d",
+      "print": "Reprint",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_HERO_Burstinatrix"
+    },
+    {
+      "cardCode": "TLM-JP003",
+      "english": "\"Elemental HERO Clayman\"",
+      "japanese": "\u300c\uff25\u30fb\uff28\uff25\uff32\uff2f\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30d2\u30fc\u30ed\u30fc\n\u30af\u30ec\u30a4\u30de\u30f3\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_HERO_Clayman"
+    },
+    {
+      "cardCode": "TLM-JP004",
+      "english": "\"Elemental HERO Sparkman\"",
+      "japanese": "\u300c\uff25\u30fb\uff28\uff25\uff32\uff2f\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30d2\u30fc\u30ed\u30fc\n\u30b9\u30d1\u30fc\u30af\u30de\u30f3\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_HERO_Sparkman"
+    },
+    {
+      "cardCode": "TLM-JP005",
+      "english": "\"Winged Kuriboh\"",
+      "japanese": "\u300c\u30cf\u30cd\u30af\u30ea\u30dc\u30fc\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Winged_Kuriboh"
+    },
+    {
+      "cardCode": "TLM-JP006",
+      "english": "\"Ancient Gear Golem\"",
+      "japanese": "\u300c\u53e4\u4ee3\u306e\u6a5f\u68b0\u5de8\u4eba\n\u30a2\u30f3\u30c6\u30a3\u30fc\u30af\u30fb\u30ae\u30a2\u30b4\u30fc\u30ec\u30e0\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Ultra Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Ancient_Gear_Golem"
+    },
+    {
+      "cardCode": "TLM-JP007",
+      "english": "\"Ancient Gear Beast\"",
+      "japanese": "\u300c\u53e4\u4ee3\u306e\u6a5f\u68b0\u7363\n\u30a2\u30f3\u30c6\u30a3\u30fc\u30af\u30fb\u30ae\u30a2\u30d3\u30fc\u30b9\u30c8\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Ancient_Gear_Beast"
+    },
+    {
+      "cardCode": "TLM-JP008",
+      "english": "\"Ancient Gear Soldier\"",
+      "japanese": "\u300c\u53e4\u4ee3\u306e\u6a5f\u68b0\u5175\u58eb\n\u30a2\u30f3\u30c6\u30a3\u30fc\u30af\u30fb\u30ae\u30a2\u30bd\u30eb\u30b8\u30e3\u30fc\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Ancient_Gear_Soldier"
+    },
+    {
+      "cardCode": "TLM-JP009",
+      "english": "\"Millennium Scorpion\"",
+      "japanese": "\u300c\u30df\u30ec\u30cb\u30a2\u30e0\u30fb\u30b9\u30b3\u30fc\u30d4\u30aa\u30f3\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Millennium_Scorpion"
+    },
+    {
+      "cardCode": "TLM-JP010",
+      "english": "\"Ultimate Insect LV7\"",
+      "japanese": "\u300c\u30a2\u30eb\u30c6\u30a3\u30e1\u30c3\u30c8\u30fb\u30a4\u30f3\u30bb\u30af\u30c8 \uff2c\uff36\n\u30ec\u30d9\u30eb\n\uff17\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Ultimate_Insect_LV7"
+    },
+    {
+      "cardCode": "TLM-JP011",
+      "english": "\"Lost Guardian\"",
+      "japanese": "\u300c\u30ed\u30b9\u30c8\u30ac\u30fc\u30c7\u30a3\u30a2\u30f3\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Lost_Guardian"
+    },
+    {
+      "cardCode": "TLM-JP012",
+      "english": "\"Hieracosphinx\"",
+      "japanese": "\u300c\u30d2\u30a8\u30e9\u30b3\u30b9\u30d5\u30a3\u30f3\u30af\u30b9\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Hieracosphinx"
+    },
+    {
+      "cardCode": "TLM-JP013",
+      "english": "\"Criosphinx\"",
+      "japanese": "\u300c\u30af\u30ea\u30aa\u30b9\u30d5\u30a3\u30f3\u30af\u30b9\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Criosphinx"
+    },
+    {
+      "cardCode": "TLM-JP014",
+      "english": "\"Moai Interceptor Cannons\"",
+      "japanese": "\u300c\u30e2\u30a2\u30a4\u8fce\n\u3052\u3044\n\u6483\n\u3052\u304d\n\u7832\n\u307b\u3046\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Moai_Interceptor_Cannons"
+    },
+    {
+      "cardCode": "TLM-JP015",
+      "english": "\"Megarock Dragon\"",
+      "japanese": "\u300c\u30e1\u30ac\u30ed\u30c3\u30af\u30fb\u30c9\u30e9\u30b4\u30f3\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Megarock_Dragon"
+    },
+    {
+      "cardCode": "TLM-JP016",
+      "english": "\"Dummy Golem\"",
+      "japanese": "\u300c\u30c0\u30df\u30fc\u30fb\u30b4\u30fc\u30ec\u30e0\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Flip monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Dummy_Golem"
+    },
+    {
+      "cardCode": "TLM-JP017",
+      "english": "\"Grave Ohja\"",
+      "japanese": "\u300c\u30b0\u30ec\u30a4\u30f4\u30fb\u30aa\u30fc\u30b8\u30e3\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Grave_Ohja"
+    },
+    {
+      "cardCode": "TLM-JP018",
+      "english": "\"Mine Golem\"",
+      "japanese": "\u300c\u30de\u30a4\u30f3\u30fb\u30b4\u30fc\u30ec\u30e0\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Mine_Golem"
+    },
+    {
+      "cardCode": "TLM-JP019",
+      "english": "\"Monk Fighter\"",
+      "japanese": "\u300c\u30e2\u30f3\u30af\u30fb\u30d5\u30a1\u30a4\u30bf\u30fc\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Monk_Fighter"
+    },
+    {
+      "cardCode": "TLM-JP020",
+      "english": "\"Master Monk\"",
+      "japanese": "\u300c\u30de\u30b9\u30bf\u30fc\u30e2\u30f3\u30af\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Master_Monk"
+    },
+    {
+      "cardCode": "TLM-JP021",
+      "english": "\"Guardian Statue\"",
+      "japanese": "\u300c\u30ac\u30fc\u30c7\u30a3\u30a2\u30f3\u30fb\u30b9\u30bf\u30c1\u30e5\u30fc\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Guardian_Statue"
+    },
+    {
+      "cardCode": "TLM-JP022",
+      "english": "\"Medusa Worm\"",
+      "japanese": "\u300c\u30e1\u30c7\u30e5\u30fc\u30b5\u30fb\u30ef\u30fc\u30e0\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Medusa_Worm"
+    },
+    {
+      "cardCode": "TLM-JP023",
+      "english": "\"D.D. Survivor\"",
+      "japanese": "\u300c\u7570\n\u3044\n\u6b21\n\u3058\n\u5143\n\u3052\u3093\n\u306e\u751f\n\u305b\u3044\n\u9084\n\u304b\u3093\n\u8005\n\u3057\u3083\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/D.D._Survivor"
+    },
+    {
+      "cardCode": "TLM-JP024",
+      "english": "\"Mid Shield Gardna\"",
+      "japanese": "\u300c\u30df\u30c9\u30eb\u30fb\u30b7\u30fc\u30eb\u30c9\u30fb\u30ac\u30fc\u30c9\u30ca\u30fc\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Mid_Shield_Gardna"
+    },
+    {
+      "cardCode": "TLM-JP025",
+      "english": "\"White Ninja\"",
+      "japanese": "\u300c\u767d\u3044\n\u30db\u30ef\u30a4\u30c8\n\u5fcd\n\u306b\u3093\n\u8005\n\u3058\u3083\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Flip monster"
+      ],
+      "url": "https://yugipedia.com/wiki/White_Ninja"
+    },
+    {
+      "cardCode": "TLM-JP026",
+      "english": "\"Aussa the Earth Charmer\"",
+      "japanese": "\u300c\u5730\n\u3061\n\u970a\n\u308c\u3044\n\u4f7f\n\u3064\u304b\n\u3044\u30a2\u30a6\u30b9\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Flip monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Aussa_the_Earth_Charmer"
+    },
+    {
+      "cardCode": "TLM-JP027",
+      "english": "\"Eria the Water Charmer\"",
+      "japanese": "\u300c\u6c34\n\u3059\u3044\n\u970a\n\u308c\u3044\n\u4f7f\n\u3064\u304b\n\u3044\u30a8\u30ea\u30a2\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Flip monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Eria_the_Water_Charmer"
+    },
+    {
+      "cardCode": "TLM-JP028",
+      "english": "\"Hiita the Fire Charmer\"",
+      "japanese": "\u300c\u706b\n\u304b\n\u970a\n\u308c\u3044\n\u4f7f\n\u3064\u304b\n\u3044\u30d2\u30fc\u30bf\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Flip monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Hiita_the_Fire_Charmer"
+    },
+    {
+      "cardCode": "TLM-JP029",
+      "english": "\"Wynn the Wind Charmer\"",
+      "japanese": "\u300c\u98a8\n\u3075\u3046\n\u970a\n\u308c\u3044\n\u4f7f\n\u3064\u304b\n\u3044\u30a6\u30a3\u30f3\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Flip monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Wynn_the_Wind_Charmer"
+    },
+    {
+      "cardCode": "TLM-JP030",
+      "english": "\"Batteryman AA\"",
+      "japanese": "\u300c\u96fb\n\u3067\u3093\n\u6c60\n\u3061\n\u30e1\u30f3\uff0d\u5358\n\u305f\u3093\n\u4e09\n\u3055\u3093\n\u578b\n\u304c\u305f\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Batteryman_AA"
+    },
+    {
+      "cardCode": "TLM-JP031",
+      "english": "\"Des Wombat\"",
+      "japanese": "\u300c\u30c7\u30b9\u30fb\u30a6\u30a9\u30f3\u30d0\u30c3\u30c8\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Des_Wombat"
+    },
+    {
+      "cardCode": "TLM-JP032",
+      "english": "\"King of the Skull Servants\"",
+      "japanese": "\u300c\u30ef\u30a4\u30c8\u30ad\u30f3\u30b0\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Effect Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/King_of_the_Skull_Servants"
+    },
+    {
+      "cardCode": "TLM-JP033",
+      "english": "\"Reshef the Dark Being\"",
+      "japanese": "\u300c\u5927\n\u3060\u3044\n\u90aa\n\u3058\u3083\n\u795e\n\u3057\u3093\n\u30ec\u30b7\u30a7\u30d5\u300d",
+      "print": "New",
+      "rarity": [
+        "Ultra Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster",
+        "Ritual Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Reshef_the_Dark_Being"
+    },
+    {
+      "cardCode": "TLM-JP034",
+      "english": "\"Elemental Mistress Doriado\"",
+      "japanese": "\u300c\u7cbe\u970a\u8853\u5e2b\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30de\u30b9\u30bf\u30fc\n\u30c9\u30ea\u30a2\u30fc\u30c9\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Effect Monster",
+        "Ritual Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_Mistress_Doriado"
+    },
+    {
+      "cardCode": "TLM-JP035",
+      "english": "\"Elemental HERO Flame Wingman\"",
+      "japanese": "\u300c\uff25\u30fb\uff28\uff25\uff32\uff2f\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30d2\u30fc\u30ed\u30fc\n\u30d5\u30ec\u30a4\u30e0\u30fb\u30a6\u30a3\u30f3\u30b0\u30de\u30f3\u300d",
+      "print": "Reprint",
+      "rarity": [
+        "Ultra Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster",
+        "Fusion Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_HERO_Flame_Wingman"
+    },
+    {
+      "cardCode": "TLM-JP036",
+      "english": "\"Elemental HERO Thunder Giant\"",
+      "japanese": "\u300c\uff25\u30fb\uff28\uff25\uff32\uff2f\n\u30a8\u30ec\u30e1\u30f3\u30bf\u30eb\u30d2\u30fc\u30ed\u30fc\n\u30b5\u30f3\u30c0\u30fc\u30fb\u30b8\u30e3\u30a4\u30a2\u30f3\u30c8\u300d",
+      "print": "New",
+      "rarity": [
+        "Ultra Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Effect Monster",
+        "Fusion Monster"
+      ],
+      "url": "https://yugipedia.com/wiki/Elemental_HERO_Thunder_Giant"
+    },
+    {
+      "cardCode": "TLM-JP037",
+      "english": "\"Card of Sanctity\"",
+      "japanese": "\u300c\u5929\n\u3066\u3093\n\u3088\u308a\u306e\u5b9d\n\u307b\u3046\n\u672d\n\u3055\u3064\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Normal Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Card_of_Sanctity"
+    },
+    {
+      "cardCode": "TLM-JP038",
+      "english": "\"Brain Control\"",
+      "japanese": "\u300c\u6d17\n\u305b\u3093\n\u8133\n\u306e\u3046\n\uff0d\u30d6\u30ec\u30a4\u30f3\u30b3\u30f3\u30c8\u30ed\u30fc\u30eb\u300d",
+      "print": "New",
+      "rarity": [
+        "Super Rare",
+        "Ultimate Rare"
+      ],
+      "typeList": [
+        "Normal Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Brain_Control"
+    },
+    {
+      "cardCode": "TLM-JP039",
+      "english": "\"Gift of the Martyr\"",
+      "japanese": "\u300c\u53d7\n\u3046\n\u3051\u7d99\n\u3064\n\u304c\u308c\u308b\u529b\n\u3061\u304b\u3089\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Gift_of_the_Martyr"
+    },
+    {
+      "cardCode": "TLM-JP040",
+      "english": "\"Double Attack\"",
+      "japanese": "\u300c\u30c0\u30d6\u30eb\u30a2\u30bf\u30c3\u30af\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Double_Attack"
+    },
+    {
+      "cardCode": "TLM-JP041",
+      "english": "\"Battery Charger\"",
+      "japanese": "\u300c\u5145\u96fb\u5668\n\u30d0\u30c3\u30c6\u30ea\u30fc\u30c1\u30e3\u30fc\u30b8\u30e3\u30fc\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Battery_Charger"
+    },
+    {
+      "cardCode": "TLM-JP042",
+      "english": "\"Kaminote Blow\"",
+      "japanese": "\u300c\u30b4\u30c3\u30c9\u30cf\u30f3\u30c9\u30fb\u30b9\u30de\u30c3\u30b7\u30e5\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Kaminote_Blow"
+    },
+    {
+      "cardCode": "TLM-JP043",
+      "english": "\"Doriado's Blessing\"",
+      "japanese": "\u300c\u30c9\u30ea\u30a2\u30fc\u30c9\u306e\u7948\n\u3044\u306e\n\u308a\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Ritual Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Doriado%27s_Blessing"
+    },
+    {
+      "cardCode": "TLM-JP044",
+      "english": "\"Final Ritual of the Ancients\"",
+      "japanese": "\u300c\u5927\n\u3060\u3044\n\u90aa\n\u3058\u3083\n\u795e\n\u3057\u3093\n\u306e\u5100\n\u304e\n\u5f0f\n\u3057\u304d\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Ritual Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Final_Ritual_of_the_Ancients"
+    },
+    {
+      "cardCode": "TLM-JP045",
+      "english": "\"Legendary Black Belt\"",
+      "japanese": "\u300c\u4f1d\n\u3067\u3093\n\u8aac\n\u305b\u3064\n\u306e\u9ed2\n\u304f\u308d\n\u5e2f\n\u304a\u3073\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Equip Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Legendary_Black_Belt"
+    },
+    {
+      "cardCode": "TLM-JP046",
+      "english": "\"Nitro Unit\"",
+      "japanese": "\u300c\u30cb\u30c8\u30ed\u30e6\u30cb\u30c3\u30c8\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Equip Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Nitro_Unit"
+    },
+    {
+      "cardCode": "TLM-JP047",
+      "english": "\"Shifting Shadows\"",
+      "japanese": "\u300c\u3046\u3054\u3081\u304f\u5f71\n\u304b\u3052\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Continuous Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Shifting_Shadows"
+    },
+    {
+      "cardCode": "TLM-JP048",
+      "english": "\"Impenetrable Formation\"",
+      "japanese": "\u300c\u9244\n\u3066\u3063\n\u58c1\n\u307a\u304d\n\u306e\u5e03\n\u3075\n\u9663\n\u3058\u3093\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Continuous Spell Card",
+        "Spell"
+      ],
+      "url": "https://yugipedia.com/wiki/Impenetrable_Formation"
+    },
+    {
+      "cardCode": "TLM-JP049",
+      "english": "\"Hero Signal\"",
+      "japanese": "\u300c\u30d2\u30fc\u30ed\u30fc\u30fb\u30b7\u30b0\u30ca\u30eb\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Hero_Signal"
+    },
+    {
+      "cardCode": "TLM-JP050",
+      "english": "\"Pikeru's Second Sight\"",
+      "japanese": "\u300c\u30d4\u30b1\u30eb\u306e\u8aad\n\u3069\u304f\n\u5fc3\n\u3057\u3093\n\u8853\n\u3058\u3085\u3064\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Pikeru%27s_Second_Sight"
+    },
+    {
+      "cardCode": "TLM-JP051",
+      "english": "\"Minefield Eruption\"",
+      "japanese": "\u300c\u5ca9\n\u304c\u3093\n\u76e4\n\u3070\u3093\n\u7206\n\u3070\u304f\n\u7834\n\u306f\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Minefield_Eruption"
+    },
+    {
+      "cardCode": "TLM-JP052",
+      "english": "\"Kozaky's Self-Destruct Button\"",
+      "japanese": "\u300c\u30b3\u30b6\u30c3\u30ad\u30fc\u306e\u81ea\n\u3058\n\u7206\n\u3070\u304f\n\u88c5\n\u305d\u3046\n\u7f6e\n\u3061\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Kozaky%27s_Self-Destruct_Button"
+    },
+    {
+      "cardCode": "TLM-JP053",
+      "english": "\"Mispolymerization\"",
+      "japanese": "\u300c\u878d\n\u3086\u3046\n\u5408\n\u3054\u3046\n\u5931\n\u3057\u3063\n\u6557\n\u3071\u3044\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Mispolymerization"
+    },
+    {
+      "cardCode": "TLM-JP054",
+      "english": "\"Level Conversion Lab\"",
+      "japanese": "\u300c\u30ec\u30d9\u30eb\u5909\n\u3078\u3093\n\u63db\n\u304b\u3093\n\u5b9f\n\u3058\u3063\n\u9a13\n\u3051\u3093\n\u5ba4\n\u3057\u3064\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Level_Conversion_Lab"
+    },
+    {
+      "cardCode": "TLM-JP055",
+      "english": "\"Rock Bombardment\"",
+      "japanese": "\u300c\u5ca9\n\u3044\u308f\n\u6295\n\u306a\n\u3052\u30a2\u30bf\u30c3\u30af\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Rock_Bombardment"
+    },
+    {
+      "cardCode": "TLM-JP056",
+      "english": "\"Grave Lure\"",
+      "japanese": "\u300c\u5893\n\u306f\u304b\n\u5834\n\u3070\n\u304b\u3089\u306e\u8a98\n\u3044\u3056\u306a\n\u3044\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Grave_Lure"
+    },
+    {
+      "cardCode": "TLM-JP057",
+      "english": "\"Token Feastevil\"",
+      "japanese": "\u300c\u30c8\u30fc\u30af\u30f3\u8b1d\n\u3057\u3083\n\u8089\n\u306b\u304f\n\u796d\n\u3055\u3044\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Normal Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Token_Feastevil"
+    },
+    {
+      "cardCode": "TLM-JP058",
+      "english": "\"Spell-Stopping Statute\"",
+      "japanese": "\u300c\u9b54\n\u307e\n\u529b\n\u308a\u3087\u304f\n\u7d42\n\u3057\u3085\u3046\n\u4e86\n\u308a\u3087\u3046\n\u5ba3\n\u305b\u3093\n\u544a\n\u3053\u304f\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Counter Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Spell-Stopping_Statute"
+    },
+    {
+      "cardCode": "TLM-JP059",
+      "english": "\"Royal Surrender\"",
+      "japanese": "\u300c\u738b\n\u304a\u3046\n\u5bae\n\u304d\u3085\u3046\n\u306e\u9665\n\u304b\u3093\n\u843d\n\u3089\u304f\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Rare"
+      ],
+      "typeList": [
+        "Counter Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Royal_Surrender"
+    },
+    {
+      "cardCode": "TLM-JP060",
+      "english": "\"Lone Wolf\"",
+      "japanese": "\u300c\u5b64\n\u3053\n\u9ad8\n\u3053\u3046\n\u306e\u683c\n\u304b\u304f\n\u95d8\n\u3068\u3046\n\u5bb6\n\u304b\n\u300d",
+      "print": "New",
+      "rarity": [
+        "Common"
+      ],
+      "typeList": [
+        "Continuous Trap Card",
+        "Trap"
+      ],
+      "url": "https://yugipedia.com/wiki/Lone_Wolf"
+    }
+  ]
+}

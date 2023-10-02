@@ -20,6 +20,7 @@ YUGIOH_DIRECTORY = "yugioh"
 # driver = webdriver.Firefox()
 driver = webdriver.Edge("./driver/msedgedriver.exe")
 
+#utils
 def writeDataToFile(path: str, data: str, fileName: str):
     if not os.path.exists(path):
             os.makedirs(path)
@@ -37,6 +38,7 @@ def loadFileToData(path: str):
         return json.loads(file_contents)
     return {}
 
+#one time parser
 
 def getCardListByAlphabet(driver, url):
     #shitty assumptions
@@ -58,9 +60,7 @@ def getCardListByAlphabet(driver, url):
             os.makedirs(pathTarget)
         writeDataToFile(pathTarget, json.dumps(cardDataList, sort_keys=True, indent=2),"%s.txt" % ( index if index != '"' else "special_char"))
 
-def getCardData(driver, url):
-    driver.get(url)
-
+#yugioh parser
 baseCardUrl = "https://yugioh.fandom.com/wiki/Zoroa,_the_Magistus_of_Flame"
 rushBaseCardUrl = "https://yugioh.fandom.com/wiki/Super_Magical_Shining_Beast_Magnum_Overlord_(L)"
 
@@ -83,7 +83,6 @@ def getCardData(driver, url:str):
 
     return cardData
     #writeDataToFile(pathTarget, json.dumps(cardData, indent=2), f'{cardData["english"]}.txt')
-
 
 def getRowData(element):
     try:
@@ -112,7 +111,6 @@ def getCardDescription(element, index):
     #TODO xpath this garbage //*[@id="collapsibleTable0"]/tbody/tr[1]/th/div
     try:
         #clicking the button to reveal the text
-        
         titleBorder = element.find_element(By.CLASS_NAME, "navbox-title")
         clickReveal = titleBorder.find_element(By.XPATH, f'//*[@id="collapseButton{index}"]')
         if(clickReveal.text.lower() == "show"):
@@ -125,38 +123,103 @@ def getCardDescription(element, index):
         print(e)
         return []
 
-
-cache = { "curr_url" : "" , "finished" : ""}
-pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
-writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
-files = os.listdir(pathTarget)
-
-try:
-    for file in files:
-        if( file.split(".")[0] in cache["finished"]):
-            print(f'skipping {file}')
+def getCardListByBooster(driver, url:str):
+    driver.get(url)
+    wait = WebDriverWait(driver, DELAY_TIME)
+    tabs = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "tabbernav")))
+    
+    driver.execute_script("arguments[0].scrollIntoView(true);", tabs)
+    #proto clicking shit
+    for tab in tabs.find_elements(By.TAG_NAME, "li"):
+        if tab.text.lower() == "japanese":
+            tab.click()
+    
+    boosterCardTabs = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "set-lists-tabber" )))
+    boosterData = {
+        "url" : url
+    }
+    for tab in boosterCardTabs.find_elements(By.CLASS_NAME, "tabbertab"):
+        lang = tab.get_attribute("title").lower()
+        if lang != "japanese":
             continue
-        loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
-        start = False if cache["curr_url"] != "" else True
-        for cardName, cardUrl in loadedCardByAlphabetical.items():
-            if cache["curr_url"] == cardUrl:
-                print("found the start url")
-                start = True
-            if start == False:
+        tableData = tab.find_element(By.CLASS_NAME, "wikitable")
+        #should add this as the parser for booster row depending on the website - very importante
+        data = []
+        rows = tableData.find_elements(By.TAG_NAME, "tr")
+        for i in range(len(rows)):
+            if(i == 0):
                 continue
-            cache["curr_url"] = cardUrl
-            data = getCardData(driver, cardUrl)
-            writeDataToFile(writeTarget, json.dumps(data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{data["english"]}.txt'))
-            sleep(1)
-            print(cache)
-        cache["finished"] = cache["finished"] + file.split(".")[0]
-        cache["curr_url"] = ""
-except Exception as e:
-    print(e)
-    writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
-                    json.dumps(cache),
-                    "cache.txt"
-                    )
+            cardColumns = rows[i].find_elements(By.TAG_NAME, "td")
+            cardData = {
+                "cardCode" : cardColumns[0].text,
+                "english" : cardColumns[1].text,
+                "japanese" : cardColumns[2].text,
+                "print" : cardColumns[5].text
+            }
+            #this follows wiki format [card num, english, japanese, rarity, type, category]
+
+            #handling rarity
+            rarityList = []
+            for rarity in cardColumns[3].find_elements(By.TAG_NAME, "a"):
+                rarityList.append(rarity.get_attribute("title"))
+            cardData["rarity"] = rarityList
+            
+            #handling type
+            typeList = []
+            for type in cardColumns[4].find_elements(By.TAG_NAME, "a"):
+                typeList.append(type.get_attribute("title"))
+            cardData["typeList"] = typeList
+            
+            #target card url
+            cardData["url"] =  cardColumns[1].find_element(By.TAG_NAME, "a").get_attribute("href")
+            data.append(cardData)
+            
+        boosterData[lang] = data
+    return boosterData        
+    
+
+
+#parse booster set card list
+baseBoosterUrl = "https://yugipedia.com/wiki/Age_of_Overlord"
+randomBoosterUrl = "https://yugipedia.com/wiki/The_Lost_Millennium"
+
+boosterData = getCardListByBooster(driver, randomBoosterUrl)
+writeDataToFile(os.getcwd(), json.dumps(boosterData, indent=2), "boosterSample.txt")
+
+
+#parse all cards base on all-list
+
+# cache = { "curr_url" : "" , "finished" : ""}
+# pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
+# writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
+# files = os.listdir(pathTarget)
+
+# try:
+#     for file in files:
+#         if( file.split(".")[0] in cache["finished"]):
+#             print(f'skipping {file}')
+#             continue
+#         loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
+#         start = False if cache["curr_url"] != "" else True
+#         for cardName, cardUrl in loadedCardByAlphabetical.items():
+#             if cache["curr_url"] == cardUrl:
+#                 print("found the start url")
+#                 start = True
+#             if start == False:
+#                 continue
+#             cache["curr_url"] = cardUrl
+#             data = getCardData(driver, cardUrl)
+#             writeDataToFile(writeTarget, json.dumps(data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{data["english"]}.txt'))
+#             sleep(1)
+#             print(cache)
+#         cache["finished"] = cache["finished"] + file.split(".")[0]
+#         cache["curr_url"] = ""
+# except Exception as e:
+#     print(e)
+#     writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
+#                     json.dumps(cache),
+#                     "cache.txt"
+#                     )
 
 #getCardData(driver, baseCardUrl)
 
