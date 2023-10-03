@@ -1,7 +1,7 @@
-from time import sleep
-from path import Path
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+# from time import sleep
+# from path import Path
+# from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -20,13 +20,16 @@ YUGIOH_DIRECTORY = "yugioh"
 # driver = webdriver.Firefox()
 driver = webdriver.Edge("./driver/msedgedriver.exe")
 
-#utils
+# utils
+
+
 def writeDataToFile(path: str, data: str, fileName: str):
     if not os.path.exists(path):
-            os.makedirs(path)
+        os.makedirs(path)
     file = open(os.path.join(path, fileName), 'w')
     file.write(data)
     file.close()
+
 
 def loadFileToData(path: str):
     if os.path.exists(path):
@@ -38,40 +41,55 @@ def loadFileToData(path: str):
         return json.loads(file_contents)
     return {}
 
-#one time parser
+
+def scrollToElement(driver: any, element: any):
+    driver.execute_script("arguments[0].scrollIntoView(true);", element)
+
+# one time parser
+
 
 def getCardListByAlphabet(driver, url):
-    #shitty assumptions
+    # shitty assumptions
     driver.get(url)
     wait = WebDriverWait(driver, DELAY_TIME)
-    characterGroup = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "category-page__members-wrapper" )))
+    characterGroup = wait.until(EC.presence_of_all_elements_located(
+        (By.CLASS_NAME, "category-page__members-wrapper")))
     for cardGroup in characterGroup:
-        urltargets = cardGroup.find_elements(By.CLASS_NAME, "category-page__member-link")
-        index = cardGroup.find_element(By.CLASS_NAME, "category-page__first-char").text or len(urltargets)
-        pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
-        fileTarget = os.path.join(pathTarget, "%s.txt" % ( index if index != '"' else "special_char"))
+        urltargets = cardGroup.find_elements(
+            By.CLASS_NAME, "category-page__member-link")
+        index = cardGroup.find_element(
+            By.CLASS_NAME, "category-page__first-char").text or len(urltargets)
+        pathTarget = os.path.join(
+            os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
+        fileTarget = os.path.join(pathTarget, "%s.txt" % (
+            index if index != '"' else "special_char"))
         cardDataList = loadFileToData(fileTarget)
         for card in urltargets:
             name = card.get_attribute('title')
             url = card.get_attribute('href')
             cardDataList[name] = url
-        #save shit
+        # save shit
         if not os.path.exists(pathTarget):
             os.makedirs(pathTarget)
-        writeDataToFile(pathTarget, json.dumps(cardDataList, sort_keys=True, indent=2),"%s.txt" % ( index if index != '"' else "special_char"))
+        writeDataToFile(pathTarget, json.dumps(cardDataList, sort_keys=True,
+                        indent=2), "%s.txt" % (index if index != '"' else "special_char"))
 
-#yugioh parser
+
+# yugioh parser
 baseCardUrl = "https://yugioh.fandom.com/wiki/Zoroa,_the_Magistus_of_Flame"
 rushBaseCardUrl = "https://yugioh.fandom.com/wiki/Super_Magical_Shining_Beast_Magnum_Overlord_(L)"
 
-def getCardData(driver, url:str):
+
+def getCardData(driver, url: str):
     driver.get(url)
     wait = WebDriverWait(driver, DELAY_TIME)
-    cardElements = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "cardtable" )))
+    cardElements = wait.until(
+        EC.presence_of_element_located((By.CLASS_NAME, "cardtable")))
     cardData = {}
-    pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
+    pathTarget = os.path.join(
+        os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
     for row in cardElements.find_elements(By.CLASS_NAME, "cardtablerow"):
-        #check if its a simple row or table data
+        # check if its a simple row or table data
         #tableData = row.find_element(By.CLASS_NAME, "cardtablespanrow")
         result = getRowData(row)
         if(len(result) > 1):
@@ -84,6 +102,7 @@ def getCardData(driver, url:str):
     return cardData
     #writeDataToFile(pathTarget, json.dumps(cardData, indent=2), f'{cardData["english"]}.txt')
 
+
 def getRowData(element):
     try:
         header = element.find_element(By.CLASS_NAME, "cardtablerowheader").text
@@ -92,7 +111,8 @@ def getRowData(element):
     except Exception:
         print("not row based - wiki")
         return []
-    
+
+
 def getTableData(element):
     try:
         tableRows = element.find_elements(By.CLASS_NAME, "cardtablespanrow")
@@ -102,20 +122,22 @@ def getTableData(element):
             for i in range(len(rows)):
                 data.append(getCardDescription(rows[i], i))
         return data
-    except Exception as e:  
+    except Exception as e:
         print(e)
-        return [] #its possible to create a record, maybe future update
+        return []  # its possible to create a record, maybe future update
+
 
 def getCardDescription(element, index):
-    #assumption hitting the row
-    #TODO xpath this garbage //*[@id="collapsibleTable0"]/tbody/tr[1]/th/div
+    # assumption hitting the row
+    # TODO xpath this garbage //*[@id="collapsibleTable0"]/tbody/tr[1]/th/div
     try:
-        #clicking the button to reveal the text
+        # clicking the button to reveal the text
         titleBorder = element.find_element(By.CLASS_NAME, "navbox-title")
-        clickReveal = titleBorder.find_element(By.XPATH, f'//*[@id="collapseButton{index}"]')
+        clickReveal = titleBorder.find_element(
+            By.XPATH, f'//*[@id="collapseButton{index}"]')
         if(clickReveal.text.lower() == "show"):
             ActionChains(driver).scroll_to_element(clickReveal).perform()
-            clickReveal.click() 
+            clickReveal.click()
         title = titleBorder.find_element(By.TAG_NAME, "div").text
         description = element.find_element(By.CLASS_NAME, "navbox-list")
         return [title, description.text]
@@ -123,27 +145,30 @@ def getCardDescription(element, index):
         print(e)
         return []
 
-def getCardListByBooster(driver, url:str):
+
+def getCardListByBooster(driver, url: str):
     driver.get(url)
     wait = WebDriverWait(driver, DELAY_TIME)
-    tabs = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "tabbernav")))
-    
-    driver.execute_script("arguments[0].scrollIntoView(true);", tabs)
-    #proto clicking shit
+    tabs = wait.until(EC.presence_of_element_located(
+        (By.CLASS_NAME, "tabbernav")))
+
+    scrollToElement(driver, tabs)
+    # proto clicking shit
     for tab in tabs.find_elements(By.TAG_NAME, "li"):
         if tab.text.lower() == "japanese":
             tab.click()
-    
-    boosterCardTabs = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "set-lists-tabber" )))
+
+    boosterCardTabs = wait.until(EC.presence_of_element_located(
+        (By.CLASS_NAME, "set-lists-tabber")))
     boosterData = {
-        "url" : url
+        "url": url
     }
     for tab in boosterCardTabs.find_elements(By.CLASS_NAME, "tabbertab"):
         lang = tab.get_attribute("title").lower()
         if lang != "japanese":
             continue
         tableData = tab.find_element(By.CLASS_NAME, "wikitable")
-        #should add this as the parser for booster row depending on the website - very importante
+        # should add this as the parser for booster row depending on the website - very importante
         data = []
         rows = tableData.find_elements(By.TAG_NAME, "tr")
         for i in range(len(rows)):
@@ -151,43 +176,79 @@ def getCardListByBooster(driver, url:str):
                 continue
             cardColumns = rows[i].find_elements(By.TAG_NAME, "td")
             cardData = {
-                "cardCode" : cardColumns[0].text,
-                "english" : cardColumns[1].text,
-                "japanese" : cardColumns[2].text,
-                "print" : cardColumns[5].text
+                "cardCode": cardColumns[0].text,
+                "english": cardColumns[1].text,
+                "japanese": cardColumns[2].text,
+                "print": cardColumns[5].text
             }
-            #this follows wiki format [card num, english, japanese, rarity, type, category]
+            # this follows wiki format [card num, english, japanese, rarity, type, category]
 
-            #handling rarity
+            # handling rarity
             rarityList = []
             for rarity in cardColumns[3].find_elements(By.TAG_NAME, "a"):
                 rarityList.append(rarity.get_attribute("title"))
             cardData["rarity"] = rarityList
-            
-            #handling type
+
+            # handling type
             typeList = []
             for type in cardColumns[4].find_elements(By.TAG_NAME, "a"):
                 typeList.append(type.get_attribute("title"))
             cardData["typeList"] = typeList
-            
-            #target card url
-            cardData["url"] =  cardColumns[1].find_element(By.TAG_NAME, "a").get_attribute("href")
+
+            # target card url
+            cardData["url"] = cardColumns[1].find_element(
+                By.TAG_NAME, "a").get_attribute("href")
             data.append(cardData)
-            
+
         boosterData[lang] = data
-    return boosterData        
+    return boosterData
+
+
+def get_card_data(driver, url: str):
+    # just yugipedia, im not refactoring everything now
+    return None
+
+
+def get_base_card_data(driver):
+    wait = WebDriverWait(driver, DELAY_TIME)
+    card = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "card-table")))
+    heading = card.find_element(By.CLASS_NAME, "heading").text
+    #ignoring jap wording cuz lazy
+    img = card.find_element(By.CLASS_NAME, "imagecolumn").find_element(By.TAG_NAME, "img").get_attribute("srcset")
+    rowsData = card.find_element(By.CLASS_NAME, "infocolumn").find_elements(By.TAG_NAME, "tr")
+    lore = card.find_element(By.CLASS_NAME, "lore").text
+    cardData = {
+        "english" : heading,
+        "imgUrl" : img,
+        "lore" : lore
+    }
+    for row in rowsData:
+        #i am not handling different cases because theres too much specificity
+        #after refactor, you are allow to do whatever u want
+        field = row.find_elements(By.TAG_NAME, "th")
+        value = row.find_element(By.TAG_NAME, "td").text
+        if len(field) >= 1:
+            cardData[field[0].text] = value
+    return cardData
     
+# parse yugioh yugipedia card
+baseCardUrl = "https://yugipedia.com/wiki/%22The_Sinful_Spoils_Hunter_Fiend%22"
+randomCardUrl = "https://yugipedia.com/wiki/Supreme_King_Dragon_Lightwurm"
+
+driver.get(randomCardUrl)
+print(json.dumps(get_base_card_data(driver), indent=2)) 
 
 
-#parse booster set card list
-baseBoosterUrl = "https://yugipedia.com/wiki/Age_of_Overlord"
-randomBoosterUrl = "https://yugipedia.com/wiki/The_Lost_Millennium"
+# parse booster set card list
+# baseBoosterUrl = "https://yugipedia.com/wiki/Age_of_Overlord"
+# randomBoosterUrl = "https://yugipedia.com/wiki/The_Lost_Millennium"
 
-boosterData = getCardListByBooster(driver, randomBoosterUrl)
-writeDataToFile(os.getcwd(), json.dumps(boosterData, indent=2), "boosterSample.txt")
+# boosterData = getCardListByBooster(driver, randomBoosterUrl)
+# writeDataToFile(os.getcwd(), json.dumps(
+#     boosterData, indent=2), "boosterSample.txt")
 
 
-#parse all cards base on all-list
+# parse all cards base on all-list
 
 # cache = { "curr_url" : "" , "finished" : ""}
 # pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
