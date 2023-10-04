@@ -2,6 +2,7 @@
 # from path import Path
 # from selenium.webdriver.firefox.options import Options
 # from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from selenium.webdriver.edge.options import Options
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -250,48 +251,55 @@ def get_base_card_data(driver):
 
 
 # parse all cards base on all-list
-
-cache = { "curr_url" : "" , "finished" : "", "error" : []}
-pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
-writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
-files = os.listdir(pathTarget)
-
-try:
-    for file in files:
-        if( file.split(".")[0] in cache["finished"]):
-            print(f'skipping {file}')
-            continue
-        loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
-        start = False if cache["curr_url"] != "" else True
-        for cardName, cardUrl in loadedCardByAlphabetical.items():
-            actual_url = re.sub(r'https:\/\/yugioh\.fandom\.com\/', 'https://yugipedia.com/', cardUrl)
-            if cache["curr_url"] == actual_url:
-                print("found the start url")
-                start = True
-            if start == False:
+repeat_url = ""
+while True:
+    cache = loadFileToData(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache","cache.txt"))
+    pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
+    writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
+    files = os.listdir(pathTarget)
+    try:
+        for file in files:
+            if( file.split(".")[0] in cache["finished"]):
+                print(f'skipping {file}')
                 continue
-            cache["curr_url"] = actual_url
-            try:
-                driver.get(actual_url)
-                card_data = get_base_card_data(driver)
-                writeDataToFile(writeTarget, json.dumps(card_data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{cardName}.txt'))
-                sleep(1)
-            except Exception as e:
-                #add it to error cache
-                cache["error"].append([cardName, cardUrl])
-        cache["finished"] = cache["finished"] + file.split(".")[0]
-        cache["curr_url"] = ""
+            loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
+            start = False if cache["curr_url"] != "" else True
+            for cardName, cardUrl in loadedCardByAlphabetical.items():
+                actual_url = re.sub(r'https:\/\/yugioh\.fandom\.com\/', 'https://yugipedia.com/', cardUrl)
+                if cache["curr_url"] == actual_url:
+                    print("found the start url")
+                    start = True
+                if start == False:
+                    continue
+                if repeat_url == cardUrl:
+                    #this means the error repeated twice, ignore it and move on
+                    cache["error"] = [cardName, cardUrl]
+                    continue
+                cache["curr_url"] = actual_url
+                try:
+                    driver.get(actual_url)
+                    card_data = get_base_card_data(driver)
+                    writeDataToFile(writeTarget, json.dumps(card_data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{cardName}.txt'))
+                    sleep(1)               
+                except Exception as e:
+                    #check if it fucks up
+                    repeat_url = actual_url
+                    raise Exception("erroring")
+            cache["finished"] = cache["finished"] + file.split(".")[0]
+            cache["curr_url"] = ""
+            writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
+                        json.dumps(cache),
+                        "cache.txt"
+                        )
+            
+    except Exception as e:
+        print(e)
         writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
-                    json.dumps(cache),
-                    "cache.txt"
-                    )
-        
-except Exception as e:
-    print(e)
-    writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
-                    json.dumps(cache),
-                    "cache.txt"
-                    )
+                        json.dumps(cache),
+                        "cache.txt"
+                        )
+    
+
 
 # getCardData(driver, baseCardUrl)
 
