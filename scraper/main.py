@@ -231,6 +231,47 @@ def get_base_card_data(driver):
         if len(field) >= 1:
             cardData[field[0].text] = value
     return cardData
+
+def get_booster_pack_list(driver):
+    driver.get("https://yugipedia.com/wiki/Core_Booster")
+    wait = WebDriverWait(driver, DELAY_TIME)
+    booster_table = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "navbox")))
+    sections = booster_table.find_elements(By.TAG_NAME, "tbody")
+    booster_data = {}
+    for section in sections:
+        try:
+            rows = section.find_elements(By.TAG_NAME, "tr")
+            title = ""
+            title_data= {}
+            for i in range(len(rows)):
+                if i == 0: #heading
+                    title = rows[i].text
+                    booster_data[title] = {}
+                    continue
+                else:
+                    series_data = {}
+                    key_data = rows[i].find_element(By.TAG_NAME, "th").text
+                    url_booster_lists = rows[i].find_element(By.TAG_NAME, "td").find_elements(By.TAG_NAME, "a")
+                    for booster in url_booster_lists:
+                        url = booster.get_attribute("href")
+                        series_data[booster.text] = url
+                    title_data[key_data] = series_data
+            booster_data[title] = title_data
+        except Exception as e:
+            continue
+    return booster_data
+    
+data = get_booster_pack_list(driver)
+writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "booster_pack"),
+                json.dumps(data, indent=2),
+                "booster_pack.txt"
+                )
+    
+                
+            
+            
+                
+    
     
 # parse yugioh yugipedia card
 # baseCardUrl = "https://yugipedia.com/wiki/%22The_Sinful_Spoils_Hunter_Fiend%22"
@@ -251,47 +292,47 @@ def get_base_card_data(driver):
 
 # parse all cards base on all-list
 
-cache = { "curr_url" : "" , "finished" : "", "error" : []}
-pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
-writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
-files = os.listdir(pathTarget)
+# cache = { "curr_url" : "" , "finished" : "", "error" : []}
+# pathTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "base_url")
+# writeTarget = os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "card")
+# files = os.listdir(pathTarget)
 
-try:
-    for file in files:
-        if( file.split(".")[0] in cache["finished"]):
-            print(f'skipping {file}')
-            continue
-        loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
-        start = False if cache["curr_url"] != "" else True
-        for cardName, cardUrl in loadedCardByAlphabetical.items():
-            actual_url = re.sub(r'https:\/\/yugioh\.fandom\.com\/', 'https://yugipedia.com/', cardUrl)
-            if cache["curr_url"] == actual_url:
-                print("found the start url")
-                start = True
-            if start == False:
-                continue
-            cache["curr_url"] = actual_url
-            try:
-                driver.get(actual_url)
-                card_data = get_base_card_data(driver)
-                writeDataToFile(writeTarget, json.dumps(card_data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{cardName}.txt'))
-                sleep(1)
-            except Exception as e:
-                #add it to error cache
-                cache["error"].append([cardName, cardUrl])
-        cache["finished"] = cache["finished"] + file.split(".")[0]
-        cache["curr_url"] = ""
-        writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
-                    json.dumps(cache),
-                    "cache.txt"
-                    )
+# try:
+#     for file in files:
+#         if( file.split(".")[0] in cache["finished"]):
+#             print(f'skipping {file}')
+#             continue
+#         loadedCardByAlphabetical = loadFileToData(os.path.join(pathTarget, file))
+#         start = False if cache["curr_url"] != "" else True
+#         for cardName, cardUrl in loadedCardByAlphabetical.items():
+#             actual_url = re.sub(r'https:\/\/yugioh\.fandom\.com\/', 'https://yugipedia.com/', cardUrl)
+#             if cache["curr_url"] == actual_url:
+#                 print("found the start url")
+#                 start = True
+#             if start == False:
+#                 continue
+#             cache["curr_url"] = actual_url
+#             try:
+#                 driver.get(actual_url)
+#                 card_data = get_base_card_data(driver)
+#                 writeDataToFile(writeTarget, json.dumps(card_data, indent=2), re.sub(r"[\\\/\:\*\?\"\<\>|]", "-", f'{cardName}.txt'))
+#                 sleep(1)
+#             except Exception as e:
+#                 #add it to error cache
+#                 cache["error"].append([cardName, cardUrl])
+#         cache["finished"] = cache["finished"] + file.split(".")[0]
+#         cache["curr_url"] = ""
+#         writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
+#                     json.dumps(cache),
+#                     "cache.txt"
+#                     )
         
-except Exception as e:
-    print(e)
-    writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
-                    json.dumps(cache),
-                    "cache.txt"
-                    )
+# except Exception as e:
+#     print(e)
+#     writeDataToFile(os.path.join(os.getcwd(), BASE_DATA_DIRECTORY, YUGIOH_DIRECTORY, "cache"),
+#                     json.dumps(cache),
+#                     "cache.txt"
+#                     )
 
 # getCardData(driver, baseCardUrl)
 
