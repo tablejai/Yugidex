@@ -2,6 +2,7 @@
 # from path import Path
 # from selenium.webdriver.firefox.options import Options
 # from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from selenium.webdriver.edge.options import Options
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
