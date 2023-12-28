@@ -38,6 +38,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
   int _selectedBottomIndex = 0;
   int _selectedPageIndex = 0;
 
+  // TODO:  Decide on proper optionStyle
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 

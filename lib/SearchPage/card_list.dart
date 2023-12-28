@@ -5,10 +5,16 @@ import "package:yugi_dex/Card/monster_card.dart";
 import "dart:developer";
 import "package:yugi_dex/SearchPage/page_route.dart";
 import "package:yugi_dex/example_card.dart";
+import "package:yugi_dex/firebase/firebase_utils.dart";
 
-class CardListItem extends StatelessWidget {
+class CardListItem extends StatefulWidget {
   const CardListItem({super.key});
 
+  @override
+  State<CardListItem> createState() => _CardListItemState();
+}
+
+class _CardListItemState extends State<CardListItem> {
   static final cardSystemLogoMapping = {
     "Level": Image.asset("images/LevelStar.png").image,
     "Rank": Image.asset("images/RankStar.png").image,
@@ -51,12 +57,19 @@ class CardListItem extends StatelessWidget {
         image: FirebaseImageProvider(FirebaseUrl(inputCard.imageUrl),
             options: const CacheOptions(source: Source.cacheServer)));
     return Row(children: <Widget>[
+      FutureBuilder(
+          future: getImage(context, inputCard.imageUrl),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Container(height: 100, width: 100, child: snapshot.data);
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Container(
+                  height: 100, width: 100, child: CircularProgressIndicator());
+            }
+            return Container(height: 100, width: 100);
+          }),
       // Leftmost part of the card's brief view (image)
-      Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0), image: cardImage)),
       // Middle part of the card's brief view
       Expanded(
           child: Column(children: <Widget>[
